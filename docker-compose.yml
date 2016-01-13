@@ -1,0 +1,31 @@
+# TODO(bbossard): Need to fork this repo dehy/adminer and create on that installs php-mongo bindings
+adminer:
+  build: .
+#  net:
+#    "adminer"
+  environment:
+    - VIRTUAL_HOST=adminer.goliath.bradleybossard.com  
+  ports:
+   - "8091:80"
+  links:
+    - db
+
+# TODO(bbossard) : This one has the same issues as the one above.
+#adminer:
+#  image: maxexcloo/adminer
+#  ports:
+#    - "8081:80" # change to whatever port is to be used
+#  links:
+#    - db
+#    - redis
+db:
+  image: mongo
+#  net:
+#    "adminer"
+  ports:
+   - "27020:27017"
+# Optional: if you are using Redis too, otherwise remove this section.
+#redis:
+#  image: redis
+#  ports:
+#   - "6379:6379"
